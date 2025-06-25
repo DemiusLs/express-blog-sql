@@ -13,6 +13,7 @@ const index = (req, res) => {
 const show = (req, res) => {
 
     const sql = 'SELECT * FROM posts WHERE id = ?';
+    const id = req.params.id
 
     connection.query(sql, [id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
@@ -38,8 +39,9 @@ const update = (req, res) => {
 }
 
 const destroy = (req, res) => {
+    const id = req.params.id
+    const sql = 'DELETE FROM posts WHERE id = ?';
 
-    const sql = 'DELETE * FROM posts WHERE id = ?';
 
     connection.query(sql, [id], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
